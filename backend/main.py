@@ -29,6 +29,10 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(payment.router, prefix="/api/payment", tags=["payment"])
+
+from api.endpoints import payment_webhook
+app.include_router(payment_webhook.router, prefix="/api/payment", tags=["payment-webhook"])
+
 app.include_router(users.router, prefix="/api/users", tags=["users"])
 app.include_router(recommend.router, prefix="/api/recommend", tags=["recommend"])
 

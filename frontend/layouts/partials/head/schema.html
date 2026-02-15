@@ -1,0 +1,38 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ .Site.BaseURL }}img/logo.png",
+  "sameAs": [
+    "https://twitter.com/stepupconnect",
+    "https://facebook.com/stepupconnect"
+  ]
+}
+</script>
+
+{{ if .IsPage }}
+{{ if eq .Type "job" }}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      "title": "{{ .Title }}",
+      "description": "{{ .Description }}",
+      "datePosted": "{{ .Date.Format "2006-01-02" }}",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "{{ .Params.company | default .Site.Title }}"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "{{ .Params.location | default "Remote" }}"
+        }
+      }
+    }
+    </script>
+{{ end }}
+{{ end }}
