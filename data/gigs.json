@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "Logo Design",
+        "budget": 5000,
+        "currency": "KES",
+        "description": "Design a modern logo for a barbershop."
+    },
+    {
+        "id": 2,
+        "title": "Article Writing",
+        "budget": 2000,
+        "currency": "KES",
+        "description": "Write a 500-word blog post about AI trends."
+    }
+]

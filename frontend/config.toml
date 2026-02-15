@@ -1,0 +1,74 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Growth Ecosystem Platform'
+theme = 'blowfish'
+
+[languages]
+  [languages.en]
+    contentDir = 'content/en'
+    weight = 1
+    languageName = 'English'
+    [languages.en.params]
+      displayName = 'English'
+      isoCode = 'en'
+      rtl = false
+
+  [languages.sw]
+    contentDir = 'content/sw'
+    weight = 2
+    languageName = 'Swahili'
+    [languages.sw.params]
+      displayName = 'Swahili'
+      isoCode = 'sw'
+      rtl = false
+
+[params]
+  colorScheme = "blowfish"
+  defaultTheme = "light"
+
+  [params.header]
+    layout = "basic"
+
+  [params.footer]
+    showCopyright = true
+    showPoweredBy = true
+
+  [params.homepage]
+    layout = "hero"
+    [params.homepage.hero]
+      title = "Step Up & Connect"
+      subtitle = "Your gateway to jobs, skills, and growth."
+      image = "img/hero.jpg" 
+      showHero = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    identifier = "jobs"
+    name = "Jobs & Gigs"
+    url = "/jobs/"
+    weight = 10
+  [[menu.main]]
+    identifier = "skills"
+    name = "Skills"
+    url = "/skills/"
+    weight = 20
+  [[menu.main]]
+    identifier = "side-hustles"
+    name = "Side Hustles"
+    url = "/side-hustles/"
+    weight = 30
+  [[menu.main]]
+    identifier = "ai-digest"
+    name = "AI Digest"
+    url = "/ai-digest/"
+    weight = 40
+  [[menu.main]]
+    identifier = "mentorship"
+    name = "Mentorship"
+    url = "/mentorship/"
+    weight = 50

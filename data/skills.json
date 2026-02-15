@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Python Programming",
+        "category": "Development",
+        "level": "Beginner",
+        "resources": [
+            "Official Docs",
+            "FreeCodeCamp"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Digital Marketing",
+        "category": "Marketing",
+        "level": "Intermediate",
+        "resources": [
+            "Google Garage",
+            "HubSpot Academy"
+        ]
+    }
+]

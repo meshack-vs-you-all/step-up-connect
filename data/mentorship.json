@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Sarah Jones",
+        "role": "Senior Software Engineer",
+        "expertise": [
+            "Python",
+            "Cloud Architecture"
+        ],
+        "availability": "Weekends"
+    },
+    {
+        "id": 2,
+        "name": "David Kim",
+        "role": "Marketing Director",
+        "expertise": [
+            "SEO",
+            "Content Strategy"
+        ],
+        "availability": "Evenings"
+    }
+]

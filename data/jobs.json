@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "title": "Junior Python Developer",
+        "company": "TechCorp",
+        "location": "Remote",
+        "type": "Full-time",
+        "description": "Looking for a junior developer with Python experience."
+    },
+    {
+        "id": 2,
+        "title": "Social Media Manager",
+        "company": "Creative Agency",
+        "location": "Nairobi",
+        "type": "Part-time",
+        "description": "Manage social media accounts for clients."
+    }
+]
