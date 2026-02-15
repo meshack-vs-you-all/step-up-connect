@@ -31,3 +31,14 @@ class GeminiService(AIService):
             return response.text
         except Exception as e:
              return f"Error generating summary: {str(e)}"
+
+    async def generate_digest(self, topic: str = "AI Trends") -> str:
+        if not self.api_key:
+             return f"[Mock Gemini] Digest on {topic} (No API Key provided)"
+
+        try:
+            model = genai.GenerativeModel('gemini-pro')
+            response = await model.generate_content_async(f"Write a short, engaging news digest about the latest {topic}.")
+            return response.text
+        except Exception as e:
+             return f"Error generating digest: {str(e)}"

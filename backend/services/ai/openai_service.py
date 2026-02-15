@@ -6,7 +6,6 @@ class OpenAIService(AIService):
     def __init__(self):
         self.api_key = os.getenv("OPENAI_API_KEY")
         if not self.api_key:
-             # In production, log warning or raise error. For now, we allow mock fallback if key missing.
              print("Warning: OPENAI_API_KEY not found.")
         else:
             openai.api_key = self.api_key
@@ -42,3 +41,18 @@ class OpenAIService(AIService):
             return response.choices[0].message.content
         except Exception as e:
              return f"Error generating summary: {str(e)}"
+
+    async def generate_digest(self, topic: str = "AI Trends") -> str:
+        if not self.api_key:
+            return f"[Mock OpenAI] Digest on {topic} (No API Key provided)"
+        try:
+            response = await openai.ChatCompletion.acreate(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a tech journalist."},
+                    {"role": "user", "content": f"Write a short, engaging news digest about the latest {topic}."}
+                ]
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+             return f"Error generating digest: {str(e)}"

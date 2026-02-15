@@ -10,6 +10,9 @@ class AIMockService(AIService):
     async def generate_skill_summary(self, skill_name: str) -> str:
          return f"[Mock Default] Skill summary for {skill_name}"
 
+    async def generate_digest(self, topic: str = "AI Trends") -> str:
+         return f"[Mock Default] Digest on {topic}"
+
 def get_ai_service() -> AIService:
     provider = os.getenv("AI_PROVIDER", "mock").lower()
     

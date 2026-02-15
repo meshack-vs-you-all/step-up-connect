@@ -1,0 +1,43 @@
+{{ if .Params.premium }}
+<div
+    class="premium-lock bg-neutral-100 dark:bg-neutral-800 p-8 rounded-xl text-center border border-neutral-200 dark:border-neutral-700 my-8">
+    <div class="text-4xl mb-4">🔒</div>
+    <h3 class="text-xl font-bold mb-2">Premium Content</h3>
+    <p class="mb-6 text-neutral-600 dark:text-neutral-400">Unlock this exclusive gig/opportunity for just KES 100.</p>
+    <button onclick="initiatePayment('{{ .Title }}', 100)"
+        class="px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg hover:bg-yellow-400 transition shadow-md">
+        Unlock Now
+    </button>
+</div>
+
+<script>
+    async function initiatePayment(title, amount) {
+        const userEmail = prompt("Enter your email to receive access:");
+        if (!userEmail) return;
+
+        try {
+            const response = await fetch('http://localhost:8000/api/payment/initiate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    amount: amount,
+                    email: userEmail,
+                    user_id: 1 // Mock user ID for now
+                }),
+            });
+
+            const data = await response.json();
+            if (data.status === 'success') {
+                window.location.href = data.data.link;
+            } else {
+                alert('Payment simulation failed.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        }
+    }
+</script>
+{{ end }}

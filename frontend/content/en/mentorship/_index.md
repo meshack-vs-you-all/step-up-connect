@@ -10,4 +10,6 @@ tags: ["Mentorship", "Career Growth"]
 Connect with experienced professionals who can guide your career journey.
 
 ### Available Mentors
-*Coming Soon - browse our simulated database!*
+
+{{ partial "mentor-list-logic.html" . }}
+

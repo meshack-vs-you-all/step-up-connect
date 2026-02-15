@@ -1,0 +1,43 @@
+<div id="mentor-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+    <div class="col-span-full text-center text-neutral-500 animate-pulse">Loading mentors...</div>
+</div>
+
+<script>
+    async function loadMentors() {
+        try {
+            const response = await fetch('http://localhost:8000/api/mentors');
+            const mentors = await response.json();
+            const container = document.getElementById('mentor-list');
+
+            if (mentors.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center">No mentors found.</div>';
+                return;
+            }
+
+            container.innerHTML = mentors.map(mentor => `
+            <div class="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-lg border border-neutral-100 dark:border-neutral-700 hover:shadow-xl transition">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl">
+                        ${mentor.name.charAt(0)}
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">${mentor.name}</h3>
+                        <p class="text-sm text-neutral-500">${mentor.role}</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    ${mentor.expertise.map(exp => `<span class="inline-block bg-neutral-100 dark:bg-neutral-700 text-xs px-2 py-1 rounded-full mr-1">${exp}</span>`).join('')}
+                </div>
+                <div class="flex justify-between items-center text-sm text-neutral-500 dark:text-neutral-400">
+                    <span>🕒 ${mentor.availability}</span>
+                    <button class="text-primary-600 hover:underline font-semibold">Book Session</button>
+                </div>
+            </div>
+        `).join('');
+        } catch (error) {
+            document.getElementById('mentor-list').innerHTML = `<div class="col-span-full text-center text-red-500">Failed to load mentors. Ensure backend is running.</div>`;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadMentors);
+</script>

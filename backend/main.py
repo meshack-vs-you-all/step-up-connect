@@ -73,3 +73,8 @@ async def ai_generate_job(title: str, ai_service: AIService = Depends(get_ai_ser
 async def ai_generate_skill(name: str, ai_service: AIService = Depends(get_ai_service)):
     summary = await ai_service.generate_skill_summary(name)
     return {"skill": name, "summary": summary}
+
+@app.get("/api/generate/digest")
+async def ai_generate_digest(topic: str = "AI Trends", ai_service: AIService = Depends(get_ai_service)):
+    digest = await ai_service.generate_digest(topic)
+    return {"topic": topic, "digest": digest}
