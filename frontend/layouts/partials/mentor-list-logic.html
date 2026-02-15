@@ -7,38 +7,104 @@
         const apiBase = "{{ .Site.Params.apiBaseURL | default "http://localhost:8000" }}";
             try {
                 const response = await fetch(`${apiBase}/api/mentors`);
-        const mentors = await response.json();
-        const container = document.getElementById('mentor-list');
+        let apiBaseURL; // Declare globally or at a higher scope
 
-        if (mentors.length === 0) {
-            container.innerHTML = '<div class="col-span-full text-center">No mentors found.</div>';
-            return;
+        async function fetchMentors() { // Renamed from loadMentors
+            apiBaseURL = "{{ .Site.Params.apiBaseURL | default "http://localhost:8000" }}";
+            const container = document.getElementById('mentor-list');
+            container.innerHTML = ''; // Clear loading message
+
+            try {
+                const response = await fetch(`${apiBaseURL}/api/mentors`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const mentors = await response.json();
+
+                if (mentors.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center">No mentors found.</div>';
+                    return;
+                }
+
+                mentors.forEach(mentor => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition duration-300';
+                    card.innerHTML = `
+                    <div class="h-32 bg-primary-500 relative">
+                         ${mentor.image_url ? `<img src="${mentor.image_url}" class="w-full h-full object-cover opacity-50">` : ''}
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-full bg-white dark:bg-neutral-800 p-1 absolute -top-8 left-6">
+                            <div class="w-full h-full rounded-full bg-neutral-200 flex items-center justify-center text-2xl">
+                                ${mentor.image_url ? `<img src="${mentor.image_url}" class="rounded-full">` : '👨‍🏫'}
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold">${mentor.name}</h3>
+                            <p class="text-neutral-500 dark:text-neutral-400 text-sm">${mentor.role} @ ${mentor.company}</p>
+                            
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                ${Array.isArray(mentor.expertise) ? mentor.expertise.map(skill =>
+                        `<span class="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded text-xs">${skill}</span>`
+                    ).join('') : ''}
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-700 flex justify-between items-center">
+                                <span class="text-xs font-bold text-green-500">Available: ${mentor.availability}</span>
+                                <button onclick="bookMentor(${mentor.id}, '${mentor.name}')" class="px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-bold hover:bg-primary-500 transition">
+                                    Book Session
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching mentors:', error);
+                container.innerHTML = `<div class="col-span-full text-center text-red-500">Failed to load mentors. Ensure backend is running.</div>`;
+            }
         }
 
-        container.innerHTML = mentors.map(mentor => `
-            <div class="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-lg border border-neutral-100 dark:border-neutral-700 hover:shadow-xl transition">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl">
-                        ${mentor.name.charAt(0)}
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg">${mentor.name}</h3>
-                        <p class="text-sm text-neutral-500">${mentor.role}</p>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    ${mentor.expertise.map(exp => `<span class="inline-block bg-neutral-100 dark:bg-neutral-700 text-xs px-2 py-1 rounded-full mr-1">${exp}</span>`).join('')}
-                </div>
-                <div class="flex justify-between items-center text-sm text-neutral-500 dark:text-neutral-400">
-                    <span>🕒 ${mentor.availability}</span>
-                    <button class="text-primary-600 hover:underline font-semibold">Book Session</button>
-                </div>
-            </div>
-        `).join('');
-    } catch (error) {
-        document.getElementById('mentor-list').innerHTML = `<div class="col-span-full text-center text-red-500">Failed to load mentors. Ensure backend is running.</div>`;
-    }
-    }
+        async function bookMentor(mentorId, mentorName) {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert("Please login to book a session.");
+                window.location.href = '/login';
+                return;
+            }
 
-    document.addEventListener('DOMContentLoaded', loadMentors);
+            const notes = prompt(`Booking session with ${mentorName}.\n\nWhat would you like to discuss?`);
+            if (!notes) return;
+
+            // Default to "tomorrow" for MVP simplicity, usually we'd show a date picker
+            const date = new Date();
+            date.setDate(date.getDate() + 1);
+
+            try {
+                const response = await fetch(`${apiBaseURL}/api/bookings/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        mentor_id: mentorId,
+                        date: date.toISOString(),
+                        notes: notes
+                    })
+                });
+
+                if (response.ok) {
+                    alert("Booking Request Sent! Check your profile for status.");
+                } else {
+                    alert("Failed to book session.");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Error booking session.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchMentors);
 </script>

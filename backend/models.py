@@ -44,3 +44,15 @@ class Mentor(Base):
     expertise = Column(JSON) # Storing list of strings as JSON
     availability = Column(String)
     image_url = Column(String, nullable=True)
+
+class Booking(Base):
+    __tablename__ = "bookings"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, index=True) # ForeignKey would be better, but keeping simple for MVP
+    mentor_id = Column(Integer, index=True)
+    date = Column(DateTime)
+    status = Column(String, default="pending") # pending, confirmed, cancelled
+    notes = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+

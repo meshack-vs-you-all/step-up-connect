@@ -1,0 +1,52 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FLUTTERWAVE_SECRET_KEY=${FLUTTERWAVE_SECRET_KEY}
+      - DATABASE_URL=postgresql://StepUpUser:StepUpPassword@db:5432/StepUpDB
+    depends_on:
+      - db
+    networks:
+      - stepup-network
+
+  frontend:
+    # In production, this should be an Nginx container serving static files
+    # For now, we'll stick to Hugo but bind to 0.0.0.0
+    image: klakegg/hugo:ext-alpine
+    command: server --bind 0.0.0.0 --appendPort=false --baseURL http://localhost:1313
+    volumes:
+      - ./frontend:/src
+    ports:
+      - "1313:1313"
+    networks:
+      - stepup-network
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: StepUpUser
+      POSTGRES_PASSWORD: StepUpPassword
+      POSTGRES_DB: StepUpDB
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - stepup-network
+
+networks:
+  stepup-network:
+
+
+volumes:
+  postgres_data:

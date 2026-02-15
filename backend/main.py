@@ -32,6 +32,10 @@ app.include_router(payment.router, prefix="/api/payment", tags=["payment"])
 app.include_router(users.router, prefix="/api/users", tags=["users"])
 app.include_router(recommend.router, prefix="/api/recommend", tags=["recommend"])
 
+from api.endpoints import bookings
+app.include_router(bookings.router, prefix="/api/bookings", tags=["bookings"])
+
+
 from sqlalchemy.orm import Session
 from core.database import get_db, Base, engine
 from models import Job, Gig, Mentor

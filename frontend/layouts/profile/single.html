@@ -21,10 +21,19 @@
         <!-- Role Specific Content -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Left Column: Stats/Activity -->
-            <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg p-6">
-                <h2 class="text-xl font-bold mb-4">Recommended for You</h2>
-                <div id="recommendations-list" class="space-y-4">
-                    <p class="text-neutral-500">Loading recommendations...</p>
+            <div class="space-y-8">
+                <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg p-6">
+                    <h2 class="text-xl font-bold mb-4">Recommended for You</h2>
+                    <div id="recommendations-list" class="space-y-4">
+                        <p class="text-neutral-500">Loading recommendations...</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg p-6">
+                    <h2 class="text-xl font-bold mb-4">My Bookings</h2>
+                    <div id="bookings-list" class="space-y-4">
+                        <p class="text-neutral-500">No bookings yet.</p>
+                    </div>
                 </div>
             </div>
 
@@ -60,6 +69,7 @@
                 const user = await response.json();
                 renderProfile(user);
                 fetchRecommendations(token);
+                fetchBookings(token);
             } else {
                 // If token invalid, clear and redirect
                 localStorage.removeItem('token');
@@ -106,6 +116,44 @@
             });
         } catch (e) {
             console.error(e);
+        }
+    }
+
+    async function fetchBookings(token) {
+        try {
+            const response = await fetch(`${apiBaseURL}/api/bookings/me`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const bookings = await response.json();
+
+            const list = document.getElementById('bookings-list');
+            list.innerHTML = '';
+
+            if (bookings.length === 0) {
+                list.innerHTML = '<p class="text-neutral-500">No bookings yet.</p>';
+                return;
+            }
+
+            bookings.forEach(booking => {
+                const item = document.createElement('div');
+                item.className = 'p-4 border-l-4 border-primary-500 bg-neutral-50 dark:bg-neutral-700/50 rounded-r-lg';
+
+                const date = new Date(booking.date).toLocaleDateString();
+                const statusColor = booking.status === 'confirmed' ? 'text-green-500' : 'text-yellow-500';
+
+                item.innerHTML = `
+                    <div class="flex justify-between">
+                        <h3 class="font-bold">Session with Mentor #${booking.mentor_id}</h3>
+                        <span class="text-xs uppercase font-bold ${statusColor}">${booking.status}</span>
+                    </div>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">📅 ${date}</p>
+                    <p class="text-xs text-neutral-500 mt-2 italic">"${booking.notes}"</p>
+                `;
+                list.appendChild(item);
+            });
+        } catch (e) {
+            console.error(e);
+            document.getElementById('bookings-list').innerHTML = '<p class="text-red-500">Error loading bookings.</p>';
         }
     }
 
