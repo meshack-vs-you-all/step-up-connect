@@ -39,10 +39,13 @@ app.include_router(recommend.router, prefix="/api/recommend", tags=["recommend"]
 from api.endpoints import bookings
 app.include_router(bookings.router, prefix="/api/bookings", tags=["bookings"])
 
+from api.endpoints import skills
+app.include_router(skills.router, prefix="/api/skills", tags=["skills"])
+
 
 from sqlalchemy.orm import Session
 from core.database import get_db, Base, engine
-from models import Job, Gig, Mentor
+from models import Job, Gig, Mentor, Skill
 
 # Create tables on startup (simple migration)
 Base.metadata.create_all(bind=engine)
@@ -61,10 +64,8 @@ async def get_jobs(db: Session = Depends(get_db)):
     # Serialize if needed, or rely on FastAPI ORM serialization
     return jobs
 
-@app.get("/api/skills")
-async def get_skills():
-    # Skills are still hardcoded/JSON for now as per audit
-    return {"skills": [{"id": 1, "name": "Python", "level": "Intermediate"}]}
+# Old /api/skills removed, now handled by router
+
 
 @app.get("/api/mentors")
 async def get_mentors(db: Session = Depends(get_db)):

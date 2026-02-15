@@ -7,8 +7,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
 
 from sqlalchemy.orm import Session
 from core.database import SessionLocal, engine, Base
-from models import User, Job, Gig, Mentor
+from models import User, Job, Gig, Mentor, Skill
 from core.security import get_password_hash
+
 
 def seed_data():
     # Create tables
@@ -83,8 +84,29 @@ def seed_data():
                 db.add(mentor)
         db.commit()
 
+    # 5. Seed Skills
+    if not db.query(Skill).first():
+        print("Seeding Skills...")
+        try:
+            with open('data/skills.json', 'r') as f:
+                skills_data = json.load(f)
+                for s in skills_data:
+                    # Check if skill exists to avoid unique constraint error if run partially
+                    if not db.query(Skill).filter(Skill.name == s['name']).first():
+                        skill = Skill(
+                            name=s['name'],
+                            category=s['category'],
+                            level=s['level'],
+                            resources=s.get('resources', [])
+                        )
+                        db.add(skill)
+                db.commit()
+        except FileNotFoundError:
+            print("Warning: data/skills.json not found. Skipping skills seed.")
+
     print("Database seeded successfully!")
     db.close()
+
 
 if __name__ == "__main__":
     seed_data()

@@ -56,3 +56,13 @@ class Booking(Base):
     notes = Column(Text)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
+class Skill(Base):
+    __tablename__ = "skills"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+    category = Column(String)
+    level = Column(String)
+    resources = Column(JSON) # List of strings/objects
+
+
