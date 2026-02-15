@@ -25,6 +25,14 @@ theme = 'blowfish'
 [params]
   colorScheme = "blowfish"
   defaultTheme = "light"
+  apiBaseURL = "http://localhost:8000"
+
+  [params.analytics.google]
+    id = "" # Add G-XXXXXXXXXX here locally/in prod
+
+  [params.analytics.posthog]
+    id = "" # Add ph_project_api_key_...
+    apiHost = "https://app.posthog.com"
 
   [params.header]
     layout = "basic"

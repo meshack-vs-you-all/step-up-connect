@@ -10,18 +10,24 @@
 - [x] Seed Data (Mentorship, Gigs, Jobs, Skills).
 
 ## Phase 1: Monetizable MVP (Current Focus)
-- [ ] **Full AI Integration**: Connect real LLMs for job/skill summaries and "AI Digest".
-- [ ] **Payment Flows**: Frontend integration for unlocking premium gigs/mentorship.
-- [ ] **Analytics**: Integrate PostHog or Google Analytics for tracking user behavior.
-- [ ] **Landing Page**: High-conversion landing page with newsletter signup.
+- [x] **Full AI Integration**: Connect real LLMs for job/skill summaries and "AI Digest".
+- [x] **Payment Flows**: Frontend integration for unlocking premium gigs/mentorship.
+- [ ] **Analytics**: Integrate PostHog or Google Analytics for tracking user behavior. (Partial: Placeholder added)
+- [x] **Landing Page**: High-conversion landing page with newsletter signup.
 - [ ] **Early Adopter Access**: Role-specific dashboards (Youth vs Mentor).
 
+## Phase 1.5: Stabilization & Verification (Immediate)
+- [ ] **Content Expansion**: realistic seed data (Jobs, Gigs, Mentors).
+- [ ] **SEO Foundation**: Metadata, Sitemap, OpenGraph tags.
+- [ ] **Analytics**: Configurable ID (PostHog/GA).
+- [ ] **Error Handling**: Improved frontend alerts.
+
 ## Phase 2: Growth & Community
-- [ ] **Personalized Recommendations**: AI matching users to gigs/mentors.
-- [ ] **Mentorship Platform**: Booking system and chat prototypes.
-- [ ] **Microlearning**: Markdown-based skill modules with quizzes.
-- [ ] **Gamification**: Badges for completed gigs/skills.
-- [ ] **SEO & Social**: OpenGraph tags, sitemap optimization, sharing buttons.
+- [ ] **Personalized Recommendations**: AI matching users to gigs/mentors based on profile.
+- [ ] **User Profiles**: Frontend profile management and history.
+- [ ] **Mentorship Platform**: Real-time booking system and availability management.
+- [ ] **Database Migration**: Transition from JSON seeds to PostgreSQL.
+- [ ] **Advanced Analytics**: Conversion tracking and feature usage stats.
 
 ## Phase 3: Expansion & Scalability
 - [ ] **Dynamic Content**: Replace JSON seeds with Postgres DB queries.

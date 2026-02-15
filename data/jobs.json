@@ -5,14 +5,43 @@
         "company": "TechCorp",
         "location": "Remote",
         "type": "Full-time",
-        "description": "Looking for a junior developer with Python experience."
+        "description": "Join our dynamic team building AI-driven solutions. Experience with FastAPI and Python 3.10+ required.",
+        "salary": "KES 80,000 - 120,000"
     },
     {
         "id": 2,
         "title": "Social Media Manager",
-        "company": "Creative Agency",
+        "company": "Growth Agency",
         "location": "Nairobi",
+        "type": "Contract",
+        "description": "Manage social media accounts for high-growth startups. Must be proficient in Canva and TikTok trends.",
+        "salary": "KES 40,000"
+    },
+    {
+        "id": 3,
+        "title": "Data Entry Specialist",
+        "company": "Logistics Ltd",
+        "location": "Remote",
         "type": "Part-time",
-        "description": "Manage social media accounts for clients."
+        "description": "Accurate data entry for shipping manifests. Flexible hours.",
+        "salary": "KES 500 / hour"
+    },
+    {
+        "id": 4,
+        "title": "Frontend Developer (React/Vue)",
+        "company": "FinTech Future",
+        "location": "Mombasa",
+        "type": "Full-time",
+        "description": "Build responsive dashboards for our banking app. Experience with TailwindCSS is a plus.",
+        "salary": "KES 150,000"
+    },
+    {
+        "id": 5,
+        "title": "Content Writer",
+        "company": "EduBlog",
+        "location": "Remote",
+        "type": "Freelance",
+        "description": "Write engaging articles about education technology and career growth.",
+        "salary": "KES 3,000 / article"
     }
 ]

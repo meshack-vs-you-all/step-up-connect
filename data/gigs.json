@@ -1,16 +1,37 @@
 [
     {
         "id": 1,
-        "title": "Logo Design",
+        "title": "Logo Design for Bakery",
         "budget": 5000,
         "currency": "KES",
-        "description": "Design a modern logo for a barbershop."
+        "description": "Need a warm, inviting logo for 'Mama's Bread'. Delivery in 3 days."
     },
     {
         "id": 2,
-        "title": "Article Writing",
-        "budget": 2000,
+        "title": "Translate Document (Eng -> Swa)",
+        "budget": 2500,
         "currency": "KES",
-        "description": "Write a 500-word blog post about AI trends."
+        "description": "Translate a 10-page user manual from English to Swahili."
+    },
+    {
+        "id": 3,
+        "title": "Fix WordPress Bug",
+        "budget": 3000,
+        "currency": "KES",
+        "description": "My site header is broken on mobile. Need a CSS fix ASAP."
+    },
+    {
+        "id": 4,
+        "title": "Voiceover for Ad",
+        "budget": 10000,
+        "currency": "KES",
+        "description": "Male voice needed for a 30-second radio spot. Energetic tone."
+    },
+    {
+        "id": 5,
+        "title": "Product Photography",
+        "budget": 15000,
+        "currency": "KES",
+        "description": "Shoot and edit 20 product photos for an online shoe store. Location: Westlands."
     }
 ]

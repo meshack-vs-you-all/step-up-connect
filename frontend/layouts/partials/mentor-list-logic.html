@@ -4,17 +4,18 @@
 
 <script>
     async function loadMentors() {
-        try {
-            const response = await fetch('http://localhost:8000/api/mentors');
-            const mentors = await response.json();
-            const container = document.getElementById('mentor-list');
+        const apiBase = "{{ .Site.Params.apiBaseURL | default "http://localhost:8000" }}";
+            try {
+                const response = await fetch(`${apiBase}/api/mentors`);
+        const mentors = await response.json();
+        const container = document.getElementById('mentor-list');
 
-            if (mentors.length === 0) {
-                container.innerHTML = '<div class="col-span-full text-center">No mentors found.</div>';
-                return;
-            }
+        if (mentors.length === 0) {
+            container.innerHTML = '<div class="col-span-full text-center">No mentors found.</div>';
+            return;
+        }
 
-            container.innerHTML = mentors.map(mentor => `
+        container.innerHTML = mentors.map(mentor => `
             <div class="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-lg border border-neutral-100 dark:border-neutral-700 hover:shadow-xl transition">
                 <div class="flex items-center gap-4 mb-4">
                     <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl">
@@ -34,9 +35,9 @@
                 </div>
             </div>
         `).join('');
-        } catch (error) {
-            document.getElementById('mentor-list').innerHTML = `<div class="col-span-full text-center text-red-500">Failed to load mentors. Ensure backend is running.</div>`;
-        }
+    } catch (error) {
+        document.getElementById('mentor-list').innerHTML = `<div class="col-span-full text-center text-red-500">Failed to load mentors. Ensure backend is running.</div>`;
+    }
     }
 
     document.addEventListener('DOMContentLoaded', loadMentors);

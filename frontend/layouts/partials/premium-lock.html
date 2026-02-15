@@ -14,30 +14,31 @@
     async function initiatePayment(title, amount) {
         const userEmail = prompt("Enter your email to receive access:");
         if (!userEmail) return;
+        const apiBase = "{{ .Site.Params.apiBaseURL | default "http://localhost:8000" }}";
 
-        try {
-            const response = await fetch('http://localhost:8000/api/payment/initiate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    amount: amount,
-                    email: userEmail,
-                    user_id: 1 // Mock user ID for now
-                }),
-            });
+            try {
+                const response = await fetch(`${apiBase}/api/payment/initiate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: amount,
+                        email: userEmail,
+                        user_id: 1 // Mock user ID for now
+                    }),
+                });
 
-            const data = await response.json();
-            if (data.status === 'success') {
-                window.location.href = data.data.link;
-            } else {
-                alert('Payment simulation failed.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred.');
+        const data = await response.json();
+        if (data.status === 'success') {
+            window.location.href = data.data.link;
+        } else {
+            alert('Payment simulation failed.');
         }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred.');
+    }
     }
 </script>
 {{ end }}

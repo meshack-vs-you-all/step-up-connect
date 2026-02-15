@@ -21,6 +21,14 @@ The easiest way to run the platform is via Docker.
     FLUTTERWAVE_SECRET_KEY=FLWSECK_TEST-SANDBOX
     ```
 
+    **Frontend Config**:
+    Update `frontend/config.toml` if your backend URL changes:
+    ```toml
+    [params]
+      apiBaseURL = "http://localhost:8000"
+    ```
+
+
 2.  **Run with Docker Compose**:
     ```bash
     docker-compose up --build

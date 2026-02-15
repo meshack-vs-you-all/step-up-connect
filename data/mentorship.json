@@ -3,20 +3,52 @@
         "id": 1,
         "name": "Sarah Jones",
         "role": "Senior Software Engineer",
+        "company": "Microsoft",
         "expertise": [
             "Python",
-            "Cloud Architecture"
+            "Cloud Architecture",
+            "Career Advice"
         ],
-        "availability": "Weekends"
+        "availability": "Weekends",
+        "image": "sarah.jpg"
     },
     {
         "id": 2,
         "name": "David Kim",
         "role": "Marketing Director",
+        "company": "Ogilvy",
         "expertise": [
             "SEO",
-            "Content Strategy"
+            "Content Strategy",
+            "Branding"
         ],
-        "availability": "Evenings"
+        "availability": "Evenings",
+        "image": "david.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Amani Wanjiku",
+        "role": "Product Manager",
+        "company": "Safaricom",
+        "expertise": [
+            "Product Roadmap",
+            "Agile",
+            "User Research"
+        ],
+        "availability": "Fridays",
+        "image": "amani.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Kevin Omondi",
+        "role": "Financial Advisor",
+        "company": "Self-Employed",
+        "expertise": [
+            "Personal Finance",
+            "Investment",
+            "Side Hustles"
+        ],
+        "availability": "Flexible",
+        "image": "kevin.jpg"
     }
 ]
