@@ -2,14 +2,44 @@
 
 A static-first, scalable platform for youth growth, connecting users to jobs, skills, side hustles, mentorship, and an AI digest.
 
-## Features
+## 🏗️ Backend Architecture (FastAPI)
+
+This project features a production-grade backend designed for scalability and performance.
+
+### 🔐 Authentication & Authorization
+- **JWT Authentication**: Secure token-based authentication for user sessions.
+- **RBAC (Role-Based Access Control)**: Different permission levels for Users, Mentors, and Administrators.
+- **Secure Password Hashing**: Using `passlib` with `bcrypt`.
+
+### 📊 Database & Data Modeling (SQLAlchemy + PostgreSQL)
+- **Relational Design**: 
+  - `User`: Core user data and profile.
+  - `Job`: Job listings with relationships to categories and locations.
+  - `Skill`: Skill descriptions and levels.
+  - `Relationship`: Many-to-Many relationships between Users and Skills (tracking progress).
+- **Migrations**: Database schema versioning with **Alembic** (in development).
+
+### ✅ Validation & Security
+- **Pydantic Schemas**: Strict data validation for all API request bodies and response models.
+- **CORS Middleware**: Configured for secure cross-origin resource sharing.
+- **Input Sanitization**: Built-in protections against common web vulnerabilities.
+
+### 🤖 AI Integration
+- **Unified Interface**: An abstract connector that seamlessly switches between **OpenAI (GPT-4o)** and **Google Gemini Pro**.
+- **Features**: 
+  - `/api/generate/job`: Automatically generates detailed job descriptions from keywords.
+  - `/api/generate/skill`: Curates skill learning paths based on user interests.
+
+### 💳 Payments
+- **Flutterwave**: Integration for handling service payments and subscriptions (Test Mode).
+
+## 🚀 Features
 - **Frontend**: Hugo (Blowfish Theme) with Multilingual support.
 - **Backend**: FastAPI with JWT Authentication & Role-based Access.
 - **AI**: Integrated abstract connector for OpenAI & Gemini.
-- **Payments**: Flutterwave integration (Test Mode).
 - **Deployment**: Full Docker support (App, DB, Redis, Frontend).
 
-## Quick Start (Docker)
+## 🛠️ Quick Start (Docker)
 
 The easiest way to run the platform is via Docker.
 
