@@ -1,6 +1,12 @@
-# Youth Growth Ecosystem Platform
+# StepUp Connect | Youth Growth Ecosystem
 
-A static-first, scalable platform for youth growth, connecting users to jobs, skills, side hustles, mentorship, and an AI digest.
+A static-first, scalable platform for youth empowerment in Kenya, connecting users to jobs, skills, side hustles, mentorship, and AI-driven career digests.
+
+## 🚀 Live Frontend
+View the project live: [https://meshack-vs-you-all.github.io/step-up-connect/](https://meshack-vs-you-all.github.io/step-up-connect/)
+
+## 🤝 Technical Partner
+Developed and managed by **[Crafted Edge Solutions](https://meshack-vs-you-all.github.io/crafted-edge-solutions-hg/)**.
 
 ## 🏗️ Backend Architecture (FastAPI)
 

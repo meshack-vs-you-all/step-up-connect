@@ -40,7 +40,7 @@ enableRobotsTXT = true
     showCopyright = true
     showPoweredBy = false
     showScrollToTop = true
-    content = "© 2026 StepUp Connect. A [**Crafted Edge Solutions**](https://meshack-vs-you-all.github.io/crafted-edge-solutions-hg/) Project."
+    content = "© 2026 StepUp Connect. Technical Partner: [**Crafted Edge Solutions**](https://meshack-vs-you-all.github.io/crafted-edge-solutions-hg/)."
 
   [params.homepage]
     layout = "hero"
