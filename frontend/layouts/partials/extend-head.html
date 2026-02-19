@@ -1,4 +1,4 @@
-{{ if .Kind }}
+{{ if ne (printf "%T" .) "*page.siteWrapper" }}
   {{ if not .IsNode }}
     {{ partial "head/seo.html" . }}
   {{ end }}
