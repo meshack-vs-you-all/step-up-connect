@@ -1,5 +1,7 @@
-{{ if not .IsNode }}
-{{ partial "head/seo.html" . }}
+{{ if .Kind }}
+  {{ if not .IsNode }}
+    {{ partial "head/seo.html" . }}
+  {{ end }}
+  {{ partial "head/schema.html" . }}
 {{ end }}
 {{ partial "analytics.html" . }}
-{{ partial "head/schema.html" . }}
