@@ -1,54 +1,53 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'Growth Ecosystem Platform'
+baseURL = 'https://meshack-vs-you-all.github.io/step-up-connect/'
+languageCode = 'en-KE'
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = false
+title = 'StepUp Connect'
 theme = 'blowfish'
 enableRobotsTXT = true
-
 
 [languages]
   [languages.en]
     contentDir = 'content/en'
     weight = 1
     languageName = 'English'
+    title = 'StepUp Connect | Jobs & Skills Kenya'
     [languages.en.params]
       displayName = 'English'
-      isoCode = 'en'
+      isoCode = 'en-KE'
       rtl = false
 
   [languages.sw]
     contentDir = 'content/sw'
     weight = 2
     languageName = 'Swahili'
+    title = 'StepUp Connect | Kazi na Stadi Kenya'
     [languages.sw.params]
-      displayName = 'Swahili'
-      isoCode = 'sw'
+      displayName = 'Kiswahili'
+      isoCode = 'sw-KE'
       rtl = false
 
 [params]
+  description = "StepUp Connect is Kenya's premier platform for career advancement, skill development, and side-hustle growth."
+  keywords = ["Jobs in Kenya", "Skills Development Nairobi", "StepUp Connect"]
   colorScheme = "blowfish"
   defaultTheme = "light"
-  apiBaseURL = "http://localhost:8000"
-
-  [params.analytics.google]
-    id = "" # Add G-XXXXXXXXXX here locally/in prod
-
-  [params.analytics.posthog]
-    id = "" # Add ph_project_api_key_...
-    apiHost = "https://app.posthog.com"
 
   [params.header]
     layout = "basic"
 
   [params.footer]
     showCopyright = true
-    showPoweredBy = true
+    showPoweredBy = false
+    showScrollToTop = true
+    content = "© 2026 StepUp Connect. A [**Crafted Edge Solutions**](https://meshack-vs-you-all.github.io/crafted-edge-solutions-hg/) Project."
 
   [params.homepage]
     layout = "hero"
     [params.homepage.hero]
       title = "Step Up & Connect"
-      subtitle = "Your gateway to jobs, skills, and growth."
-      image = "img/hero.jpg" 
+      subtitle = "Empowering Kenyans with Jobs, Skills, and High-Ticket Opportunities."
+      image = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
       showHero = true
 
 [markup]
@@ -64,7 +63,7 @@ enableRobotsTXT = true
     weight = 10
   [[menu.main]]
     identifier = "skills"
-    name = "Skills"
+    name = "Skills Hub"
     url = "/skills/"
     weight = 20
   [[menu.main]]
@@ -72,11 +71,6 @@ enableRobotsTXT = true
     name = "Side Hustles"
     url = "/side-hustles/"
     weight = 30
-  [[menu.main]]
-    identifier = "ai-digest"
-    name = "AI Digest"
-    url = "/ai-digest/"
-    weight = 40
   [[menu.main]]
     identifier = "mentorship"
     name = "Mentorship"

@@ -1,18 +1,18 @@
 <meta name="description"
-    content="{{ if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | default .Description }}{{ end }}" />
+    content="{{ if $.IsHome }}{{ site.Params.description }}{{ else }}{{ $.Summary | default $.Description }}{{ end }}" />
 <meta property="og:title"
-    content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}" />
+    content="{{ if $.IsHome }}{{ site.Title }}{{ else }}{{ $.Title }} | {{ site.Title }}{{ end }}" />
 <meta property="og:description"
-    content="{{ if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | default .Description }}{{ end }}" />
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
-<meta property="og:url" content="{{ .Permalink }}" />
-{{ if .Params.image }}
-<meta property="og:image" content="{{ .Params.image | absURL }}" />
+    content="{{ if $.IsHome }}{{ site.Params.description }}{{ else }}{{ $.Summary | default $.Description }}{{ end }}" />
+<meta property="og:type" content="{{ if $.IsHome }}website{{ else }}article{{ end }}" />
+<meta property="og:url" content="{{ $.Permalink }}" />
+{{ if $.Params.image }}
+<meta property="og:image" content="{{ $.Params.image | absURL }}" />
 {{ else }}
-<meta property="og:image" content="{{ site.Params.defaultImage | default " img/hero.jpg" | absURL }}" />
+<meta property="og:image" content="{{ site.Params.defaultImage | default "img/hero.jpg" | absURL }}" />
 {{ end }}
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+<meta name="twitter:title" content="{{ if $.IsHome }}{{ site.Title }}{{ else }}{{ $.Title }}{{ end }}" />
 <meta name="twitter:description"
-    content="{{ if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | default .Description }}{{ end }}" />
+    content="{{ if $.IsHome }}{{ site.Params.description }}{{ else }}{{ $.Summary | default $.Description }}{{ end }}" />
